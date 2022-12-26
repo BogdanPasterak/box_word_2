@@ -10,4 +10,9 @@ export class GameController {
   showBoard(): BoardView {
     return new BoardView(this.gameService.showBoard());
   }
+
+  @Get('generate')
+  generate(): BoardView {
+    return new BoardView(this.gameService.generate());
+  }
 }

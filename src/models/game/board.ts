@@ -2,6 +2,14 @@ export interface Board {
   fields: string[];
 }
 
+export class BoardObj implements Board {
+  public fields: string[];
+
+  constructor() {
+    this.fields = [...'                '];
+  }
+}
+
 export class BoardView {
   board: string[];
   constructor(board: Board) {
