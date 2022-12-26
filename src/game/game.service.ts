@@ -3,9 +3,11 @@ import { Board, BoardObj } from 'src/models/game/board';
 
 @Injectable()
 export class GameService {
+  current: Board;
   // test set
   showBoard(): Board {
-    return { fields: [...'axxxxbxxxxcxxxd '] };
+    if (this.current) return this.current;
+    else return this.generate();
   }
 
   // generate random set
@@ -18,16 +20,14 @@ export class GameService {
       let position: number;
       do {
         position = Math.floor(Math.random() * 15);
-        if (bo.fields[position] == ' ') {
+        if (bo.fields[position] == 'x') {
           bo.fields[position] = l;
           ok = true;
         }
       } while (!ok);
     });
-    // fill rest position
-    bo.fields = bo.fields.map((p) => (p == ' ' ? 'x' : p));
-    // last one space
-    bo.fields[15] = ' ';
+
+    this.current = bo;
     return bo;
   }
 }

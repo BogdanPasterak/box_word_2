@@ -1,12 +1,15 @@
 export interface Board {
   fields: string[];
+  space: number;
 }
 
 export class BoardObj implements Board {
   public fields: string[];
+  public space: number;
 
   constructor() {
-    this.fields = [...'                '];
+    this.fields = [...'xxxxxxxxxxxxxxx '];
+    this.space = 15;
   }
 }
 
